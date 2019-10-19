@@ -1,6 +1,8 @@
 # generated
 *.tx
 *.o
+*.music
+*.musicxml
 
 # precompiled python
 *.pyc

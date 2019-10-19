@@ -141,6 +141,12 @@ SECTION "Extra Songs 2", ROMX
 INCLUDE "audio/music/postcredits.asm"
 
 
+SECTION "XML Converted", ROMX
+
+INCLUDE "audio/music/musicxml/Wake_Me_Up_When_September_Ends.music"
+INCLUDE "audio/music/musicxml/MegalovaniaGB.music"
+
+
 SECTION "Sound Effects", ROMX
 
 INCLUDE "audio/sfx.asm"

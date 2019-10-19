@@ -33,12 +33,13 @@ RGBASM  ?= $(RGBDS)rgbasm
 RGBFIX  ?= $(RGBDS)rgbfix
 RGBGFX  ?= $(RGBDS)rgbgfx
 RGBLINK ?= $(RGBDS)rgblink
+PYTHON  ?= python
 
 
 ### Build targets
 
 .SUFFIXES:
-.PHONY: all crystal crystal11 crystal_au clean tidy compare tools
+.PHONY: all crystal crystal11 crystal_au clean tidy compare tools mus
 .SECONDEXPANSION:
 .PRECIOUS:
 .SECONDARY:
@@ -47,9 +48,12 @@ all: crystal
 crystal: pokecrystal.gbc
 crystal11: pokecrystal11.gbc
 crystal-au: pokecrystal-au.gbc
+mus: $(music)
 
 clean:
 	rm -f $(roms) $(crystal_obj) $(crystal11_obj) $(crystal_au_obj) $(roms:.gbc=.map) $(roms:.gbc=.sym)
+	find audio/music \( -name "*.music" \) -delete
+	find audio/music \( -name "*.musicxml" \) -delete
 	find gfx \( -name "*.[12]bpp" -o -name "*.lz" -o -name "*.gbcpal" \) -delete
 	find gfx/pokemon -mindepth 1 ! -path "gfx/pokemon/unown/*" \( -name "bitmask.asm" -o -name "frames.asm" -o -name "front.animated.tilemap" -o -name "front.dimensions" \) -delete
 	$(MAKE) clean -C tools/
@@ -69,6 +73,11 @@ $(crystal_obj):   RGBASMFLAGS =
 $(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL11
 $(crystal_au_obj): RGBASMFLAGS = -D _CRYSTAL11 -D _CRYSTAL_AU
 
+# Music rules
+%.ini: %.ini
+%.musicxml: %.mscz ; musescore $< -o $@
+%.music: %.musicxml ; $(PYTHON) tools/muse2pokecrystal/muse2pokecrystal.py -i $< -o $@ --config $(basename $<).ini
+
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
 # It doesn't look like $(shell) can be deferred so there might not be a better way.
@@ -83,12 +92,12 @@ ifeq (,$(filter clean tools,$(MAKECMDGOALS)))
 
 $(info $(shell $(MAKE) -C tools))
 
+
 $(foreach obj, $(crystal_au_obj), $(eval $(call DEP,$(obj),$(obj:_au.o=.asm))))
 $(foreach obj, $(crystal11_obj), $(eval $(call DEP,$(obj),$(obj:11.o=.asm))))
 $(foreach obj, $(crystal_obj), $(eval $(call DEP,$(obj),$(obj:.o=.asm))))
 
 endif
-
 
 pokecrystal.gbc: $(crystal_obj) pokecrystal.link
 	$(RGBLINK) -n pokecrystal.sym -m pokecrystal.map -l pokecrystal.link -o $@ $(crystal_obj)
