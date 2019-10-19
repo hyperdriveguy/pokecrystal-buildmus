@@ -2,7 +2,7 @@ _MainMenu:
 	ld de, MUSIC_NONE
 	call PlayMusic
 	call DelayFrame
-	ld de, MUSIC_MAIN_MENU
+	ld de, MUSIC_MEGALOVANIA
 	ld a, e
 	ld [wMapMusic], a
 	call PlayMusic
@@ -1103,7 +1103,7 @@ TitleScreenEntrance:
 	ldh [hLCDCPointer], a
 
 ; Play the title screen music.
-	ld de, MUSIC_TITLE
+	ld de, MUSIC_WAKE_ME_UP_WHEN_SEPTEMBER_ENDS
 	call PlayMusic
 
 	ld a, $88
