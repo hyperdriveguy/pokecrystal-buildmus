@@ -102,7 +102,7 @@ def parity_check(musicfile, nonoise):
                     else:
                         print("\033[93m" + str(item) + "\033[0m")
                 sys.exit(1)
-    print("\n\033[94mParity check succeeded!")
+    print("\n\033[94mParity check succeeded!\033[0m")
 
 def note_process(pitch, channel):
     altered = pitch.find('alter')
@@ -184,7 +184,7 @@ def parse_channel1(part, title, manualtempo, tempo, conf):
         	asmfile.write("\ttempo {}\n".format(int(19200/int(part.find('./measure/direction/sound').get('tempo')))))
         except TypeError:
             print("\033[93mNo tempo was detected. Use try again with the --tempo parameter.")
-            print("\n\033[91m\033[1mConversion incomplete!"\033[0m)
+            print("\n\033[91m\033[1mConversion incomplete!\033[0m")
             sys.exit(2)
     else:
         asmfile.write("\ttempo {}\n".format(int(19200/int(tempo))))
