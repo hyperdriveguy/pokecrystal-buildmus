@@ -54,13 +54,13 @@ def process_score(xmlfile, musicfile, conf, nonoise, manualtempo, tempo, song_ti
             parse_channel4(xmlroot.find("./part[@id='{}']".format(parts_list[3][0])), pointer_title, conf)
         except IndexError:
             print("\033[93mNo noise channel. Try running with the --noiseless parameter.")
-            print("\n\033[91m\033[1mConversion incomplete!")
+            print("\n\033[91m\033[1mConversion incomplete!\033[0m")
             sys.exit(2)
 
     # close
     asmfile.close()
     parity_check(musicfile, nonoise)
-    print("\033[92m\033[1mConversion success!")
+    print("\033[92m\033[1mConversion success!\033[0m")
 
 # checks the length of each channel to prevent desyncing
 def parity_check(musicfile, nonoise):
@@ -184,7 +184,7 @@ def parse_channel1(part, title, manualtempo, tempo, conf):
         	asmfile.write("\ttempo {}\n".format(int(19200/int(part.find('./measure/direction/sound').get('tempo')))))
         except TypeError:
             print("\033[93mNo tempo was detected. Use try again with the --tempo parameter.")
-            print("\n\033[91m\033[1mConversion incomplete!")
+            print("\n\033[91m\033[1mConversion incomplete!"\033[0m)
             sys.exit(2)
     else:
         asmfile.write("\ttempo {}\n".format(int(19200/int(tempo))))
