@@ -110,6 +110,7 @@
 
 	const MUSIC_WAKE_ME_UP_WHEN_SEPTEMBER_ENDS
 	const MUSIC_MEGALOVANIA
+	const MUSIC_FAKE_PLASTIC_TREES
 
 ; GetMapMusic picks music for this value (see home/map.asm)
 MUSIC_MAHOGANY_MART EQU $64

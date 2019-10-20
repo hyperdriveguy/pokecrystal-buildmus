@@ -108,3 +108,4 @@ Music:
 	dba Music_MobileCenter
 	dba Music_WakeMeUpWhenSeptemberEnds
 	dba Music_Megalovania
+	dba Music_FakePlasticTrees

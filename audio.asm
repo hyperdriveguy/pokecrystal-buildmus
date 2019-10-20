@@ -145,6 +145,7 @@ SECTION "XML Converted", ROMX
 
 INCLUDE "audio/music/musicxml/Wake_Me_Up_When_September_Ends.music"
 INCLUDE "audio/music/musicxml/MegalovaniaGB.music"
+INCLUDE "audio/music/musicxml/Fake_Plastic_Trees.music"
 
 
 SECTION "Sound Effects", ROMX

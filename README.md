@@ -1,4 +1,17 @@
-# Pokémon Crystal [![Build Status][travis-badge]][travis]
+# Pokecrystal-buildmus
+
+This is a proof a concept that shows off basic make rules for building custom music
+from the Musescore format (.mscz) using [muse2pokecrystal](https://github.com/nephitejnf/muse2pokecrystal).
+
+The files that will be of most interest:
+- `Makefile`
+- `audio/music/musicxml/*.mscz`
+- `audio/music/musicxml/*.ini`
+
+Building the repo as is will show off the songs in the title screen and main menu.
+
+Adding any new music in `audio.asm` should use the `.music` extension.
+### Pokémon Crystal [![Build Status][travis-badge]][travis]
 
 This is a disassembly of Pokémon Crystal.
 
@@ -10,7 +23,7 @@ It builds the following ROMs:
 
 To set up the repository, see [INSTALL.md](INSTALL.md).
 
-## See also
+#### See also
 
 - [**FAQ**](FAQ.md)
 - [**Documentation**][docs]
