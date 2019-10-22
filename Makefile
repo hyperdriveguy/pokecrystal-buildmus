@@ -74,9 +74,8 @@ $(crystal11_obj): RGBASMFLAGS = -D _CRYSTAL11
 $(crystal_au_obj): RGBASMFLAGS = -D _CRYSTAL11 -D _CRYSTAL_AU
 
 # Music rules
-%.ini: %.ini
 %.musicxml: %.mscz ; musescore $< -o $@
-%.music: %.musicxml ; $(PYTHON) tools/muse2pokecrystal/muse2pokecrystal.py -i $< -o $@ --config $(basename $<).ini
+%.music: %.musicxml %.ini ; $(PYTHON) tools/muse2pokecrystal/muse2pokecrystal.py -i $< -o $@ --config $(basename $<).ini
 
 # The dep rules have to be explicit or else missing files won't be reported.
 # As a side effect, they're evaluated immediately instead of when the rule is invoked.
