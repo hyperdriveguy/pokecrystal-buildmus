@@ -11,6 +11,10 @@ The files that will be of most interest:
 Building the repo as is will show off the songs in the title screen and main menu.
 
 Adding any new music in `audio.asm` should use the `.music` extension.
+
+Building depends on Musescore to turn the `*.mscz` into `*.musicxml`. If you want a similar setup, but for
+some reason do not wish to install Musescore, delete the `%.mscz` pattern rule and have `make clean` not delete `*.musicxml`.
+
 ### Pokémon Crystal [![Build Status][travis-badge]][travis]
 
 This is a disassembly of Pokémon Crystal.
